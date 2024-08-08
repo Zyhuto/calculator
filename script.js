@@ -3,20 +3,30 @@ const calculatorFunctions = {
     add: function(a ,b){return a + b},
     subtract: function(a,b){return a - b},
     multiply: function(a,b){return a * b},
-    divide: function(a,b){return a/b}
+    divide: function(a,b){return handleDivision(a,b)}
 }
+function handleDivision(a,b) {
+    if (b == 0) {
+        alert("Error: Divion by Zero")
+        window.location.reload()}
+    return a / b;
+}
+
 let numberMemory;
 let currentOperator;
 let newNumberB;
 let equalPressedB;
+
 const displayDiv = document.querySelector(".digit-display");
 const digitContainer = document.querySelector(".numbers-container");
 const operatorContainer = document.querySelector(".operators-container");
 const equalButton = document.querySelector("#result")
+const decimalButton = document.querySelector("#decimal")
 
 digitContainer.addEventListener("click", e => handleDigitClick(e));
 operatorContainer.addEventListener("click", e => handleOperatorClick(e));
 equalButton.addEventListener("click", e => handleEqualClick());
+decimalButton.addEventListener("click", e => updateDisplay("."))
 
 function handleDigitClick(event){
     let target = event.target;
@@ -27,13 +37,13 @@ function handleDigitClick(event){
             equalPressedB = false;
         }
     }
-
 }
 
 function handleOperatorClick(event) {
     let target = event.target;
     if (target.classList.contains("operator"))
     {
+        useDecimalB = false;
         if (!numberMemory) {
             numberMemory = +displayDiv.textContent
             newNumberB = true;
@@ -49,9 +59,10 @@ function handleOperatorClick(event) {
     }
 }
 function handleEqualClick(){
+    if (!equalPressedB && currentOperator) {
     processResult();
     currentOperator = null;
-    equalPressedB = true;
+    equalPressedB = true;}
 
 }
 function processResult () {
@@ -59,18 +70,21 @@ function processResult () {
     displayDiv.textContent = result;
     numberMemory = result;
     newNumberB = true;
+    useDecimalB = false;
 
 
 }
-
-
 function updateDisplay(n) {
-    if (displayDiv.textContent == 0 || newNumberB) {
-        displayDiv.textContent = n;
-        newNumberB = false;
-    } else {
-        displayDiv.textContent = displayDiv.textContent * 10 + +n
-    }
     
+    if (displayDiv.textContent === "0" || newNumberB) {
+        newNumberB = false; 
+        if (n == "."){
+            displayDiv.textContent="0."}
+            else {displayDiv.textContent=n}
+    } else {displayDiv.textContent = displayDiv.textContent + n}}
 
-}
+        
+            
+
+ 
+
