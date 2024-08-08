@@ -21,12 +21,12 @@ const displayDiv = document.querySelector(".digit-display");
 const digitContainer = document.querySelector(".numbers-container");
 const operatorContainer = document.querySelector(".operators-container");
 const equalButton = document.querySelector("#result")
-const decimalButton = document.querySelector("#decimal")
-const deleteButton = document.querySelector("#delete")
+const clearButton = document.querySelector("#clear")
 
 digitContainer.addEventListener("click", e => handleDigitClick(e));
 operatorContainer.addEventListener("click", e => handleOperatorClick(e));
 equalButton.addEventListener("click", e => handleEqualClick());
+clearButton.addEventListener("click", e => clear())
 
 function handleDigitClick(event){
     let target = event.target;
@@ -73,6 +73,13 @@ function processResult () {
 
 
 }
+function clear(){
+    let numberMemory = null;
+    let currentOperator = null;
+    let newNumberB = false;
+    let equalPressedB = false;
+    displayDiv.textContent = "0";
+}
 function updateDisplay(n) {
     if (n === "X") {
         if (newNumberB) {
@@ -89,19 +96,6 @@ function updateDisplay(n) {
         if (n == "."){
             displayDiv.textContent ="0."}
             else {displayDiv.textContent=n}
-    } else {displayDiv.textContent = displayDiv.textContent + n}  }
+    } else if (Array.from(displayDiv.textContent).includes(".") && n === "."){return;}
+    else {displayDiv.textContent = displayDiv.textContent + n}  }
 
-        
-            
-
- 
-
-document.querySelector("body").addEventListener("click", x => writeDebug())
-
-function writeDebug()
-{
-    document.querySelector("#debug1").textContent = "mem  " + numberMemory;
-    document.querySelector("#debug2").textContent = "curOp  " + currentOperator;
-    document.querySelector("#debug3").textContent = "newNumB  " + newNumberB;
-    document.querySelector("#debug4").textContent = "eqPressedB  " + equalPressedB;
-}
