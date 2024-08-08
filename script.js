@@ -66,7 +66,7 @@ function handleEqualClick(){
 }
 function processResult () {
     let result = calculatorFunctions[currentOperator](numberMemory,+displayDiv.textContent);
-    displayDiv.textContent = result;
+    displayDiv.textContent = Math.round(result * 1000000)/1000000;
     numberMemory = result;
     newNumberB = true;
 
@@ -85,7 +85,7 @@ function updateDisplay(n) {
         if (n == "."){
             displayDiv.textContent ="0."}
             else {displayDiv.textContent=n}
-    } else {displayDiv.textContent = displayDiv.textContent + n}}
+    } else {displayDiv.textContent = displayDiv.textContent + n}  }
 
         
             
