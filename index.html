@@ -8,27 +8,38 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="numbers-container">
-        <button class="digit">0</button>
-        <button class="digit">1</button>
-        <button class="digit">2</button>
-        <button class="digit">3</button>
-        <button class="digit">4</button>
-        <button class="digit">5</button>
-        <button class="digit">6</button>
-        <button class="digit">7</button>
-        <button class="digit">8</button>
-        <button class="digit">9</button>
+    
+    <div class="calculator-container">
+        <div class="digit-display">0</div>
+        <div class="button-container">
+            <div class="numbers-container">
+                <button class="digit btn">1</button>
+                <button class="digit btn">2</button>
+                <button class="digit btn">3</button>
+                <button class="digit btn">4</button>
+                <button class="digit btn">5</button>
+                <button class="digit btn">6</button>
+                <button class="digit btn">7</button>
+                <button class="digit btn">8</button>
+                <button class="digit btn">9</button>
+                <button class="digit btn">0</button>
+                <button id="decimal" class="btn">.</button>
+                <button id="delete" class="btn">X</button>
+            </div>
+            <div class="right-side-container">
+                <div class="operators-container">
+                    <button class="operator btn" id="add">+</button>
+                    <button class="operator btn" id="subtract">-</button>
+                    <button class="operator btn" id="multiply">*</button>
+                    <button class="operator btn" id="divide">/</button>
+                </div>
+                <button id="result" class="btn">=</button>
+            </div>
+        </div>
     </div>
-    <div class="operators-container">
-        <button class="operator" id="add">+</button>
-        <button class="operator" id="subtract">-</button>
-        <button class="operator" id="multiply">*</button>
-        <button class="operator" id="divide">/</button>
-    </div>
-    <button id="result">=</button>
-    <button id="decimal">.</button>
-    <div class="digit-display">0</div>
+    
+    
+    
     
 </body>
 </html>

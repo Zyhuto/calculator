@@ -22,15 +22,15 @@ const digitContainer = document.querySelector(".numbers-container");
 const operatorContainer = document.querySelector(".operators-container");
 const equalButton = document.querySelector("#result")
 const decimalButton = document.querySelector("#decimal")
+const deleteButton = document.querySelector("#delete")
 
 digitContainer.addEventListener("click", e => handleDigitClick(e));
 operatorContainer.addEventListener("click", e => handleOperatorClick(e));
 equalButton.addEventListener("click", e => handleEqualClick());
-decimalButton.addEventListener("click", e => updateDisplay("."))
 
 function handleDigitClick(event){
     let target = event.target;
-    if (target.classList.contains("digit")){
+    if (!target.classList.contains("numbers-container")){
         updateDisplay(target.textContent)
         if(equalPressedB) {
             numberMemory = null;
@@ -43,7 +43,6 @@ function handleOperatorClick(event) {
     let target = event.target;
     if (target.classList.contains("operator"))
     {
-        useDecimalB = false;
         if (!numberMemory) {
             numberMemory = +displayDiv.textContent
             newNumberB = true;
@@ -70,16 +69,21 @@ function processResult () {
     displayDiv.textContent = result;
     numberMemory = result;
     newNumberB = true;
-    useDecimalB = false;
 
 
 }
 function updateDisplay(n) {
-    
+    if (n === "X") {
+         if (displayDiv.textContent.length == 1){
+            displayDiv.textContent = "0";
+        } else {displayDiv.textContent = displayDiv.textContent.slice(0, -1)}
+        return;
+    }
+
     if (displayDiv.textContent === "0" || newNumberB) {
         newNumberB = false; 
         if (n == "."){
-            displayDiv.textContent="0."}
+            displayDiv.textContent ="0."}
             else {displayDiv.textContent=n}
     } else {displayDiv.textContent = displayDiv.textContent + n}}
 
