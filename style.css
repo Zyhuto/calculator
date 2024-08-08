@@ -63,7 +63,7 @@ body {
     gap: 8px;
     align-content: flex-start;
 }
-
+.left-side-container,
 .right-side-container {
     display: flex;
     flex-direction: column;
@@ -75,7 +75,11 @@ body {
         flex-direction: column;
         gap: 8px
     }
-
+.other-buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
 
 .first-color { 
 	background: #e7eaf6; 

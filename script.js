@@ -32,7 +32,7 @@ function handleDigitClick(event){
     let target = event.target;
     if (!target.classList.contains("numbers-container")){
         updateDisplay(target.textContent)
-        if(equalPressedB) {
+        if(equalPressedB && target.classList.contains("new")) {
             numberMemory = null;
             equalPressedB = false;
         }
@@ -41,6 +41,7 @@ function handleDigitClick(event){
 
 function handleOperatorClick(event) {
     let target = event.target;
+    if (newNumberB && !equalPressedB) {return;}
     if (target.classList.contains("operator"))
     {
         if (!numberMemory) {
@@ -74,7 +75,10 @@ function processResult () {
 }
 function updateDisplay(n) {
     if (n === "X") {
-         if (displayDiv.textContent.length == 1){
+        if (newNumberB) {
+            return;
+        } 
+        if (displayDiv.textContent.length == 1){
             displayDiv.textContent = "0";
         } else {displayDiv.textContent = displayDiv.textContent.slice(0, -1)}
         return;
@@ -92,3 +96,12 @@ function updateDisplay(n) {
 
  
 
+document.querySelector("body").addEventListener("click", x => writeDebug())
+
+function writeDebug()
+{
+    document.querySelector("#debug1").textContent = "mem  " + numberMemory;
+    document.querySelector("#debug2").textContent = "curOp  " + currentOperator;
+    document.querySelector("#debug3").textContent = "newNumB  " + newNumberB;
+    document.querySelector("#debug4").textContent = "eqPressedB  " + equalPressedB;
+}
